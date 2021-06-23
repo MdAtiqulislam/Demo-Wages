@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ef0671d3-206c-4df3-9657-0ecc86101b5a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="style1" backcolor="#FF0000">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{attendance_work_time}.equals("0.0")]]></conditionExpression>
+			<style mode="Opaque" forecolor="#000000" backcolor="#FF0033" fill="Solid"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[!$F{attendance_work_time}.equals( "0.0" )]]></conditionExpression>
+			<style/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[!$F{attendance_work_time}.equals("8.0")]]></conditionExpression>
+			<style mode="Opaque" backcolor="#FFCCCC"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="start_date" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="end_date" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cardNo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     attendance.`id` AS attendance_id,
+     attendance.`name` AS attendance_name,
+     attendance.`card_no` AS attendance_card_no,
+     attendance.`department` AS attendance_department,
+     attendance.`date` AS attendance_date,
+     attendance.`time_table` AS attendance_time_table,
+     attendance.`on_duty` AS attendance_on_duty,
+     attendance.`off_duty` AS attendance_off_duty,
+     attendance.`clock_in` AS attendance_clock_in,
+     attendance.`clock_out` AS attendance_clock_out,
+     attendance.`work_time` AS attendance_work_time,
+     attendance.`over_time` AS attendance_over_time
+FROM
+     `attendance` attendance
+where date between $P{start_date} and $P{end_date} and card_no = $P{cardNo}]]>
+	</queryString>
+	<field name="attendance_id" class="java.lang.Integer"/>
+	<field name="attendance_name" class="java.lang.String"/>
+	<field name="attendance_card_no" class="java.lang.Integer"/>
+	<field name="attendance_department" class="java.lang.String"/>
+	<field name="attendance_date" class="java.sql.Date"/>
+	<field name="attendance_time_table" class="java.lang.String"/>
+	<field name="attendance_on_duty" class="java.lang.String"/>
+	<field name="attendance_off_duty" class="java.lang.String"/>
+	<field name="attendance_clock_in" class="java.lang.String"/>
+	<field name="attendance_clock_out" class="java.lang.String"/>
+	<field name="attendance_work_time" class="java.lang.String"/>
+	<field name="attendance_over_time" class="java.lang.String"/>
+	<variable name="attendance_work_time_1" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{attendance_work_time}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="572" height="26" backcolor="#CCCCCC" uuid="05612f55-9137-470b-ab2f-baddb9138785"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Madina Jute Industries Ltd.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="25" width="572" height="28" backcolor="#CCCCCC" uuid="431daea3-f13b-4d47-b8e4-3ca633899b27"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Attendence Inquery]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="60" splitType="Stretch">
+			<textField>
+				<reportElement mode="Opaque" x="76" y="20" width="123" height="20" forecolor="#FF0000" backcolor="#FFFFFF" uuid="9508a40f-ea70-4335-8313-fbbeb167f4c6"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{attendance_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="2" y="20" width="74" height="20" forecolor="#FF0000" backcolor="#FFFFFF" uuid="b667e78d-7ee6-4cf3-8534-c8973bbb064d"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Name:]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Opaque" x="76" y="0" width="123" height="20" forecolor="#FF0000" backcolor="#FFFFFF" uuid="4e55bf99-75f3-47ec-8ffa-1b19027dcf03"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{attendance_card_no}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="2" y="0" width="74" height="20" forecolor="#FF0000" backcolor="#FFFFFF" uuid="fa95b491-7900-458c-be32-f0c1e49bc381"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Card No:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="73" y="40" width="100" height="20" forecolor="#FFFFFF" backcolor="#0000CC" uuid="2fac365f-8646-4503-8a70-c6f18fb9f323"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[On Duty Time]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="173" y="40" width="100" height="20" forecolor="#FFFFFF" backcolor="#0000CC" uuid="3f35b6f6-61ab-4064-87d6-a03b14091331"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[In Time]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="273" y="40" width="100" height="20" forecolor="#FFFFFF" backcolor="#0000CC" uuid="c18e7fb7-947e-40b6-b8a8-1cba9a5ed531"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Off Duty Time]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="373" y="40" width="100" height="20" forecolor="#FFFFFF" backcolor="#0000CC" uuid="4aaf16bc-db42-4985-b0ae-a87fd48eb306"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Out Time]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="473" y="40" width="100" height="20" forecolor="#FFFFFF" backcolor="#0000CC" uuid="23f6bca3-f754-44f3-93fe-caa276421ae1"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Work Time]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="40" width="73" height="20" forecolor="#FFFFFF" backcolor="#0000CC" uuid="42c8b400-2d8e-4b98-a5b4-bd64a332d039"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="style1" x="0" y="0" width="73" height="20" uuid="0dc61d03-de17-4a69-8658-0d78ca2d676e"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{attendance_date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="style1" x="373" y="0" width="100" height="20" uuid="f2fa9004-94e0-4411-b761-c538797d6b92"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{attendance_clock_out}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="style1" x="473" y="0" width="100" height="20" uuid="5aa08950-76c8-42d4-a2b4-47e5832d6708"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{attendance_work_time}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="style1" x="73" y="0" width="100" height="20" uuid="22cc594a-a765-4d37-889b-70b04b4ae601"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{attendance_on_duty}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="style1" x="173" y="0" width="100" height="20" uuid="8a846320-9dee-4ce3-b79d-eb985c2a8a7f"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{attendance_clock_in}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="style1" x="273" y="0" width="100" height="20" uuid="65832dd5-c665-48e9-80d8-9c54c3c1f6ea"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{attendance_off_duty}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="41" splitType="Stretch"/>
+	</summary>
+</jasperReport>

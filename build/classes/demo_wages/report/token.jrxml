@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" columnCount="3" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="250" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e17f06e4-27ec-485c-9e55-f326ece65683">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="1"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     sallery.`id` AS sallery_id,
+     sallery.`name` AS sallery_name,
+     sallery.`card_no` AS sallery_card_no,
+     sallery.`department` AS sallery_department,
+     sallery.`designation` AS sallery_designation,
+     sallery.`r_department` AS sallery_r_department,
+     sallery.`r_shift` AS sallery_r_shift,
+     sallery.`display_shift` AS sallery_display_shift,
+     sallery.`sallery_type` AS sallery_sallery_type,
+     sallery.`daily_wages` AS sallery_daily_wages,
+     sallery.`reli_allo` AS sallery_reli_allo,
+     sallery.`special_allo` AS sallery_special_allo,
+     sallery.`extra_allo` AS sallery_extra_allo,
+     sallery.`hollyDayAllow` AS sallery_hollyDayAllow,
+     sallery.`fes_allow` AS sallery_fes_allow,
+     sallery.`working_day` AS sallery_working_day,
+     sallery.`working_hour` AS sallery_working_hour,
+     sallery.`payable_sallery` AS sallery_payable_sallery,
+     sallery.`ot_hour` AS sallery_ot_hour,
+     sallery.`ot_rate` AS sallery_ot_rate,
+     sallery.`double_wages` AS sallery_double_wages,
+     sallery.`double_mac_allow` AS sallery_double_mac_allow,
+     sallery.`attn_allow` AS sallery_attn_allow,
+     sallery.`night_allow` AS sallery_night_allow,
+     sallery.`hollyDayHour` AS sallery_hollyDayHour,
+     sallery.`subtotal` AS sallery_subtotal,
+     sallery.`total` AS sallery_total,
+     sallery.`deduct` AS sallery_deduct,
+     sallery.`net_payable` AS sallery_net_payable,
+     sallery.`block_status` AS sallery_block_status,
+     sallery.`pending_status` AS sallery_pending_status,
+     sallery.`week_start_date` AS sallery_week_start_date,
+     sallery.`week_end_date` AS sallery_week_end_date,
+     sallery.`pay_date` AS sallery_pay_date
+FROM
+     `sallery` sallery]]>
+	</queryString>
+	<field name="sallery_id" class="java.lang.Integer"/>
+	<field name="sallery_name" class="java.lang.String"/>
+	<field name="sallery_card_no" class="java.lang.Integer"/>
+	<field name="sallery_department" class="java.lang.String"/>
+	<field name="sallery_designation" class="java.lang.String"/>
+	<field name="sallery_r_department" class="java.lang.String"/>
+	<field name="sallery_r_shift" class="java.lang.String"/>
+	<field name="sallery_display_shift" class="java.lang.String"/>
+	<field name="sallery_sallery_type" class="java.lang.String"/>
+	<field name="sallery_daily_wages" class="java.lang.Integer"/>
+	<field name="sallery_reli_allo" class="java.lang.Integer"/>
+	<field name="sallery_special_allo" class="java.lang.Integer"/>
+	<field name="sallery_extra_allo" class="java.lang.Integer"/>
+	<field name="sallery_hollyDayAllow" class="java.lang.Integer"/>
+	<field name="sallery_fes_allow" class="java.lang.Integer"/>
+	<field name="sallery_working_day" class="java.lang.Integer"/>
+	<field name="sallery_working_hour" class="java.lang.Integer"/>
+	<field name="sallery_payable_sallery" class="java.lang.Integer"/>
+	<field name="sallery_ot_hour" class="java.lang.Integer"/>
+	<field name="sallery_ot_rate" class="java.lang.Integer"/>
+	<field name="sallery_double_wages" class="java.lang.Double"/>
+	<field name="sallery_double_mac_allow" class="java.lang.Integer"/>
+	<field name="sallery_attn_allow" class="java.lang.Integer"/>
+	<field name="sallery_night_allow" class="java.lang.Integer"/>
+	<field name="sallery_hollyDayHour" class="java.lang.Integer"/>
+	<field name="sallery_subtotal" class="java.lang.Double"/>
+	<field name="sallery_total" class="java.lang.Double"/>
+	<field name="sallery_deduct" class="java.lang.Integer"/>
+	<field name="sallery_net_payable" class="java.lang.Integer"/>
+	<field name="sallery_block_status" class="java.lang.Integer"/>
+	<field name="sallery_pending_status" class="java.lang.Integer"/>
+	<field name="sallery_week_start_date" class="java.sql.Date"/>
+	<field name="sallery_week_end_date" class="java.sql.Date"/>
+	<field name="sallery_pay_date" class="java.sql.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="140" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="60" width="100" height="20" uuid="7fbb4bee-9c80-4eff-8a0a-bc2d9ea0bf60"/>
+				<text><![CDATA[sallery_name]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="60" width="100" height="20" uuid="205b5672-61d1-4a6c-9c8d-33ebd82593df"/>
+				<textFieldExpression><![CDATA[$F{sallery_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="40" width="100" height="20" uuid="1feb09e5-a32f-481f-92a7-6bd88e6bdac9"/>
+				<text><![CDATA[sallery_card_no]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="40" width="100" height="20" uuid="f99f1b9f-d935-43eb-8ba4-5071a2c2b8a5"/>
+				<textFieldExpression><![CDATA[$F{sallery_card_no}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="80" width="100" height="20" uuid="ac468f3e-7ca4-4a7a-b57d-ea4f8ccd1273"/>
+				<text><![CDATA[sallery_ot_hour]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="80" width="100" height="20" uuid="a22ef7e1-13a9-4105-881c-5f3abef48b01"/>
+				<textFieldExpression><![CDATA[$F{sallery_ot_hour}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="99" width="100" height="20" uuid="fa7c2329-b8b6-46ce-ae87-c5159d08e00d"/>
+				<text><![CDATA[sallery_net_payable]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="99" width="100" height="20" uuid="120ca52e-c40c-48cd-b442-08e23ff5a165"/>
+				<textFieldExpression><![CDATA[$F{sallery_net_payable}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="f16b2c57-80bf-409c-9daa-cbe834abb782"/>
+				<text><![CDATA[sallery_r_department]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="0" width="100" height="20" uuid="eb02b603-01c5-44fd-be21-ef3a449ca22f"/>
+				<textFieldExpression><![CDATA[$F{sallery_r_department}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="20" width="100" height="20" uuid="90e65dde-6c39-4c4d-8ffe-0deebaf38d2b"/>
+				<text><![CDATA[sallery_designation]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="20" width="100" height="20" uuid="aadc3a27-a32c-4d01-b9f3-c73356fa6ac0"/>
+				<textFieldExpression><![CDATA[$F{sallery_designation}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

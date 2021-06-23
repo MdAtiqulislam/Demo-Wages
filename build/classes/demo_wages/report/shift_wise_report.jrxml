@@ -1,0 +1,1487 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2939d9c7-0d03-4d58-8c41-079af4e28eb4">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="runDept" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="shift_from" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="shift_to" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="totalInWords" class="java.lang.String"/>
+	<parameter name="pendingAmount" class="java.lang.String"/>
+	<parameter name="payableAmount" class="java.lang.String"/>
+	<parameter name="weekEndDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     sallery.`id` AS sallery_id,
+     sallery.`name` AS sallery_name,
+     sallery.`card_no` AS sallery_card_no,
+     sallery.`department` AS sallery_department,
+     sallery.`designation` AS sallery_designation,
+     sallery.`r_department` AS sallery_r_department,
+     sallery.`r_shift` AS sallery_r_shift,
+     sallery.`sallery_type` AS sallery_sallery_type,
+     sallery.`daily_wages` AS sallery_daily_wages,
+     sallery.`attn_allow` AS sallery_attn_allow,
+     sallery.`night_allow` AS sallery_night_allow,
+     sallery.`double_wages` AS sallery_double_wages,
+     sallery.`ot_rate` AS sallery_ot_rate,
+     sallery.`fes_allow` AS sallery_fes_allow,
+     sallery.`reli_allo` AS sallery_reli_allo,
+     sallery.`special_allo` AS sallery_special_allo,
+     sallery.`extra_allo` AS sallery_extra_allo,
+     sallery.`working_day` AS sallery_working_day,
+     sallery.`working_hour` AS sallery_working_hour,
+     sallery.`subtotal` AS sallery_subtotal,
+     sallery.`total` AS sallery_total,
+     sallery.`deduct` AS sallery_deduct,
+     sallery.`net_payable` AS sallery_net_payable,
+     sallery.`ot_hour` AS sallery_ot_hour,
+     sallery.`hollyDayHour` AS sallery_hollyDayHour,
+     sallery.`hollyDayAllow` AS sallery_hollyDayAllow,
+     sallery.`week_start_date` AS sallery_week_start_date,
+     sallery.`week_end_date` AS sallery_week_end_date,
+     sallery.`pay_date` AS sallery_pay_date,
+     sallery.`block_status` AS sallery_block_status,
+     sallery.`pending_status` AS sallery_pending_status,
+     sallery.`double_mac_allow` AS double_mac_allow,
+     department.`display_name` AS department_display_name,
+     employee.`joining_date` AS employee_joining_date,
+     employee.`reliever_status` AS employee_reliever_status,
+     employee.`reliever_type` AS employee_reliever_type,
+     designation.`code` AS designation_code,
+     shift_management.`ori_shift` AS ori_shift,
+     shift_management.`run_shift` AS run_shift
+FROM
+     `sallery` sallery
+ JOIN 
+     department ON sallery.r_department=department.department_code
+ JOIN 
+     employee ON sallery.card_no=employee.card_no
+ JOIN 
+     designation ON sallery.designation=designation.designation
+ JOIN 
+     shift_management ON sallery.week_end_date=shift_management.to_date and sallery.r_shift=shift_management.run_shift
+where 
+	week_end_date=$P{weekEndDate} and ori_shift between $P{shift_from} and $P{shift_to} and r_department=$P{runDept} and block_status<>1
+order by designation_code ASC]]>
+	</queryString>
+	<field name="sallery_id" class="java.lang.Integer"/>
+	<field name="sallery_name" class="java.lang.String"/>
+	<field name="sallery_card_no" class="java.lang.Integer"/>
+	<field name="sallery_department" class="java.lang.String"/>
+	<field name="sallery_designation" class="java.lang.String"/>
+	<field name="sallery_r_department" class="java.lang.String"/>
+	<field name="sallery_r_shift" class="java.lang.String"/>
+	<field name="sallery_sallery_type" class="java.lang.String"/>
+	<field name="sallery_daily_wages" class="java.lang.Integer"/>
+	<field name="sallery_attn_allow" class="java.lang.Integer"/>
+	<field name="sallery_night_allow" class="java.lang.Integer"/>
+	<field name="sallery_double_wages" class="java.lang.Double"/>
+	<field name="sallery_ot_rate" class="java.lang.Integer"/>
+	<field name="sallery_fes_allow" class="java.lang.Integer"/>
+	<field name="sallery_reli_allo" class="java.lang.Integer"/>
+	<field name="sallery_special_allo" class="java.lang.Integer"/>
+	<field name="sallery_extra_allo" class="java.lang.Integer"/>
+	<field name="sallery_working_day" class="java.lang.Integer"/>
+	<field name="sallery_working_hour" class="java.lang.Integer"/>
+	<field name="sallery_subtotal" class="java.lang.Double"/>
+	<field name="sallery_total" class="java.lang.Double"/>
+	<field name="sallery_deduct" class="java.lang.Integer"/>
+	<field name="sallery_net_payable" class="java.lang.Integer"/>
+	<field name="sallery_ot_hour" class="java.lang.Integer"/>
+	<field name="sallery_hollyDayHour" class="java.lang.Integer"/>
+	<field name="sallery_hollyDayAllow" class="java.lang.Integer"/>
+	<field name="sallery_week_start_date" class="java.sql.Date"/>
+	<field name="sallery_week_end_date" class="java.sql.Date"/>
+	<field name="sallery_pay_date" class="java.sql.Date"/>
+	<field name="sallery_block_status" class="java.lang.Integer"/>
+	<field name="sallery_pending_status" class="java.lang.Integer"/>
+	<field name="double_mac_allow" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="department_display_name" class="java.lang.String"/>
+	<field name="employee_joining_date" class="java.sql.Date"/>
+	<field name="employee_reliever_status" class="java.lang.Integer"/>
+	<field name="employee_reliever_type" class="java.lang.String"/>
+	<field name="designation_code" class="java.lang.String"/>
+	<field name="ori_shift" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="run_shift" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<sortField name="ori_shift"/>
+	<variable name="sallery_net_payable_1" class="java.lang.Double" resetType="Page" calculation="Sum">
+		<variableExpression><![CDATA[$F{sallery_net_payable}]]></variableExpression>
+	</variable>
+	<variable name="sallery_working_hour_1" class="java.lang.Integer" resetType="Page" calculation="Sum">
+		<variableExpression><![CDATA[$F{sallery_working_hour}]]></variableExpression>
+	</variable>
+	<variable name="sallery_subtotal_1" class="java.lang.Double" resetType="Page" calculation="Sum">
+		<variableExpression><![CDATA[$F{sallery_subtotal}]]></variableExpression>
+	</variable>
+	<variable name="sallery_reli_allo_1" class="java.lang.Integer" resetType="Page" calculation="Sum">
+		<variableExpression><![CDATA[$F{sallery_reli_allo}]]></variableExpression>
+	</variable>
+	<variable name="sallery_special_allo_1" class="java.lang.Integer" resetType="Page" calculation="Sum">
+		<variableExpression><![CDATA[$F{sallery_special_allo}]]></variableExpression>
+	</variable>
+	<variable name="sallery_extra_allo_1" class="java.lang.Integer" resetType="Page" calculation="Sum">
+		<variableExpression><![CDATA[$F{sallery_extra_allo}]]></variableExpression>
+	</variable>
+	<variable name="sallery_attn_allow_1" class="java.lang.Integer" resetType="Page" calculation="Sum">
+		<variableExpression><![CDATA[$F{sallery_attn_allow}]]></variableExpression>
+	</variable>
+	<variable name="sallery_night_allow_1" class="java.lang.Integer" resetType="Page" calculation="Sum">
+		<variableExpression><![CDATA[$F{sallery_night_allow}]]></variableExpression>
+	</variable>
+	<variable name="sallery_double_wages_1" class="java.lang.Integer" resetType="Page" calculation="Sum">
+		<variableExpression><![CDATA[$F{sallery_double_wages}]]></variableExpression>
+	</variable>
+	<variable name="sallery_fes_allow_1" class="java.lang.Integer" resetType="Page" calculation="Sum">
+		<variableExpression><![CDATA[$F{sallery_fes_allow}]]></variableExpression>
+	</variable>
+	<variable name="sallery_total_1" class="java.lang.Double" resetType="Page" calculation="Sum">
+		<variableExpression><![CDATA[$F{sallery_total}]]></variableExpression>
+	</variable>
+	<variable name="sallery_deduct_1" class="java.lang.Integer" resetType="Page" calculation="Sum">
+		<variableExpression><![CDATA[$F{sallery_deduct}]]></variableExpression>
+	</variable>
+	<variable name="sallery_net_payable_2" class="java.lang.Double" resetType="Page" calculation="Sum">
+		<variableExpression><![CDATA[$F{sallery_net_payable}]]></variableExpression>
+	</variable>
+	<variable name="sallery_attn_allow_2" class="java.lang.Integer" resetType="Page" calculation="Sum">
+		<variableExpression><![CDATA[$F{sallery_attn_allow}]]></variableExpression>
+	</variable>
+	<variable name="totalPAge" class="java.lang.Integer" incrementType="Page" calculation="Highest">
+		<variableExpression><![CDATA[$V{PAGE_NUMBER}]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="sallery_working_hour_2" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{sallery_working_hour}]]></variableExpression>
+	</variable>
+	<variable name="sallery_subtotal_2" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{sallery_subtotal}]]></variableExpression>
+	</variable>
+	<variable name="sallery_reli_allo_2" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{sallery_reli_allo}]]></variableExpression>
+	</variable>
+	<variable name="sallery_special_allo_2" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{sallery_special_allo}]]></variableExpression>
+	</variable>
+	<variable name="sallery_extra_allo_2" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{sallery_extra_allo}]]></variableExpression>
+	</variable>
+	<variable name="sallery_attn_allow_3" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{sallery_attn_allow}]]></variableExpression>
+	</variable>
+	<variable name="sallery_night_allow_2" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{sallery_night_allow}]]></variableExpression>
+	</variable>
+	<variable name="sallery_double_wages_2" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{sallery_double_wages}]]></variableExpression>
+	</variable>
+	<variable name="sallery_ot_hour_1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{sallery_ot_hour}]]></variableExpression>
+	</variable>
+	<variable name="sallery_fes_allow_2" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{sallery_fes_allow}]]></variableExpression>
+	</variable>
+	<variable name="sallery_total_2" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{sallery_total}]]></variableExpression>
+	</variable>
+	<variable name="sallery_deduct_2" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{sallery_deduct}]]></variableExpression>
+	</variable>
+	<variable name="sallery_net_payable_3" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{sallery_net_payable}]]></variableExpression>
+	</variable>
+	<variable name="sallery_working_hour_3" class="java.lang.Integer" resetType="Page" calculation="Sum">
+		<variableExpression><![CDATA[$F{sallery_working_hour}]]></variableExpression>
+	</variable>
+	<variable name="sallery_net_payable_4" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{sallery_net_payable}]]></variableExpression>
+	</variable>
+	<variable name="sallery_working_hour_4" class="java.lang.Integer" resetType="Page" calculation="Sum">
+		<variableExpression><![CDATA[$F{sallery_working_hour}]]></variableExpression>
+	</variable>
+	<variable name="sallery_net_payable_5" class="java.lang.Integer" resetType="Page" calculation="Sum">
+		<variableExpression><![CDATA[$F{sallery_net_payable}]]></variableExpression>
+	</variable>
+	<variable name="sallery_net_payable_6" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{sallery_net_payable}]]></variableExpression>
+	</variable>
+	<variable name="sallery_subtotal_3" class="java.lang.Double" resetType="Page" calculation="Sum">
+		<variableExpression><![CDATA[$F{sallery_subtotal}]]></variableExpression>
+	</variable>
+	<variable name="sallery_reli_allo_3" class="java.lang.Integer" resetType="Page" calculation="Sum">
+		<variableExpression><![CDATA[$F{sallery_reli_allo}]]></variableExpression>
+	</variable>
+	<variable name="sallery_special_allo_3" class="java.lang.Integer" resetType="Page" calculation="Sum">
+		<variableExpression><![CDATA[$F{sallery_special_allo}]]></variableExpression>
+	</variable>
+	<variable name="sallery_extra_allo_3" class="java.lang.Integer" resetType="Page" calculation="Sum">
+		<variableExpression><![CDATA[$F{sallery_extra_allo}]]></variableExpression>
+	</variable>
+	<variable name="sallery_attn_allow_4" class="java.lang.Integer" resetType="Page" calculation="Sum">
+		<variableExpression><![CDATA[$F{sallery_attn_allow}]]></variableExpression>
+	</variable>
+	<variable name="sallery_night_allow_3" class="java.lang.Integer" resetType="Page" calculation="Sum">
+		<variableExpression><![CDATA[$F{sallery_night_allow}]]></variableExpression>
+	</variable>
+	<variable name="double_mac_allow_1" class="java.lang.Integer" resetType="Page" calculation="Sum">
+		<variableExpression><![CDATA[$F{double_mac_allow}]]></variableExpression>
+	</variable>
+	<variable name="sallery_double_wages_3" class="java.lang.Double" resetType="Page" calculation="Sum">
+		<variableExpression><![CDATA[$F{sallery_double_wages}]]></variableExpression>
+	</variable>
+	<variable name="sallery_fes_allow_3" class="java.lang.Integer" resetType="Page" calculation="Sum">
+		<variableExpression><![CDATA[$F{sallery_fes_allow}]]></variableExpression>
+	</variable>
+	<variable name="sallery_total_3" class="java.lang.Double" resetType="Page" calculation="Sum">
+		<variableExpression><![CDATA[$F{sallery_total}]]></variableExpression>
+	</variable>
+	<variable name="sallery_deduct_3" class="java.lang.Integer" resetType="Page" calculation="Sum">
+		<variableExpression><![CDATA[$F{sallery_deduct}]]></variableExpression>
+	</variable>
+	<group name="ShiftGroup">
+		<groupExpression><![CDATA[$F{sallery_r_shift}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<textField>
+					<reportElement x="258" y="0" width="100" height="20" uuid="776fc1c5-e1e1-43e3-85ba-8ff569699d44"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{sallery_r_shift}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="71" y="0" width="100" height="20" uuid="c22826bb-047b-4500-854b-ec9b4c53b21b"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ori_shift}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="1" y="0" width="70" height="20" uuid="6af041eb-1a2b-4ab4-88ea-a48bbb32acf4"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Original Shift:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="188" y="0" width="70" height="20" uuid="bc03de00-0874-4a22-9c29-cdef33fc3a35"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Running Shift:]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="65" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="752" height="26" uuid="9d848a27-a9b5-43ed-af11-729156a62588"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Madina Jute Industries Ltd.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="26" width="752" height="13" uuid="cee15952-9ed8-4b46-87e6-cff6b7a2f4fd"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[TIME RATE WORKER WEEKLY WAGES SHEET]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="52" width="60" height="13" uuid="bfbfb4e5-d747-45b4-b1b4-debf6a696da5"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Period From:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="129" y="52" width="18" height="13" uuid="b536cff6-9fca-4eb4-8f52-d173dfa241db"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[To:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="632" y="52" width="80" height="13" uuid="1fe1102b-a892-44c9-8982-d7bec8c3d3c6"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="712" y="52" width="40" height="13" uuid="5d64e5cb-c273-432d-863b-262935f8e58e"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="147" y="32" width="145" height="20" uuid="dd85e2f3-d886-4c79-8117-b9da755793d7"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sallery_department}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="32" width="147" height="20" uuid="23363c00-5004-45c4-987d-2af1c7832ad1"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{department_display_name}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="63" y="52" width="66" height="13" uuid="c16adc70-18d5-4734-81db-ecd775272508"/>
+				<textElement>
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sallery_week_start_date}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="147" y="52" width="100" height="13" uuid="d3dde0f1-176e-4193-b213-c2b9ddcac661"/>
+				<textElement>
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sallery_week_end_date}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="19" height="40" uuid="57b9648c-c07a-40c3-9357-78064f9c0ea6"/>
+				<box>
+					<pen lineWidth="0.3"/>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[S.N]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="19" y="0" width="66" height="20" uuid="a617a4fb-fbac-4442-b08b-f7cc48e99bcf"/>
+				<box>
+					<pen lineWidth="0.3"/>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[Employee Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="19" y="20" width="66" height="20" uuid="36328706-16b8-445d-b3fa-c31ed44ce9d6"/>
+				<box>
+					<pen lineWidth="0.3"/>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[Joining Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="85" y="0" width="48" height="40" uuid="b28cec52-5f9d-4524-8462-17e89f6fac03"/>
+				<box>
+					<pen lineWidth="0.3"/>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[Designation]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="133" y="0" width="30" height="40" uuid="7a552564-1923-4efb-9d82-1a8f7cd9b717"/>
+				<box>
+					<pen lineWidth="0.3"/>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[Card No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="163" y="0" width="26" height="40" uuid="90b43592-8363-43a4-a203-14cea23324dd"/>
+				<box>
+					<pen lineWidth="0.3"/>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[Total HRS.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="189" y="0" width="31" height="40" uuid="dcd72dc9-2631-4a0c-990d-7fb669f54aed"/>
+				<box>
+					<pen lineWidth="0.3"/>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[Daily Wages]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="220" y="0" width="42" height="40" uuid="78b85ebd-8fab-461c-babd-2a5632babdc2"/>
+				<box>
+					<pen lineWidth="0.3"/>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[Sub Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="262" y="0" width="30" height="40" uuid="858081eb-2e77-4dc9-aa8c-cba47421c947"/>
+				<box>
+					<pen lineWidth="0.3"/>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[Reli. Allow.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="292" y="0" width="30" height="40" uuid="8b6519e0-218e-4959-9843-d94bf8467619"/>
+				<box>
+					<pen lineWidth="0.3"/>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[Special Allow.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="322" y="0" width="30" height="40" uuid="e2a31997-b967-4dd7-b487-66bdb2c7af3a"/>
+				<box>
+					<pen lineWidth="0.3"/>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[Extra Allow.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="352" y="0" width="37" height="40" uuid="ef5669e2-92e9-4e17-a375-68be660e2f92"/>
+				<box>
+					<pen lineWidth="0.3"/>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[Attn. Allow.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="389" y="0" width="37" height="40" uuid="f6f62bdf-7501-431e-86e5-390504d09d51"/>
+				<box>
+					<pen lineWidth="0.3"/>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[Night Allow]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="426" y="0" width="35" height="40" uuid="d5cbbd1a-4f44-4fdd-aada-8584941f2b1a"/>
+				<box>
+					<pen lineWidth="0.3"/>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[Double Mach. Allow.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="461" y="0" width="45" height="40" uuid="596628fe-559c-4a5b-b891-a9036d783ca6"/>
+				<box>
+					<pen lineWidth="0.3"/>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[Double Wages]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="506" y="0" width="31" height="40" uuid="0a8899f9-fc8c-4303-b85d-0dea8ff7064b"/>
+				<box>
+					<pen lineWidth="0.3"/>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[O.T Wages]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="537" y="0" width="35" height="40" uuid="fad73eef-556a-4986-a404-9f1c440b0fea"/>
+				<box>
+					<pen lineWidth="0.3"/>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[Fes. Allow.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="572" y="0" width="50" height="40" uuid="418ca37f-c667-419c-8d06-71bbc65beed2"/>
+				<box>
+					<pen lineWidth="0.3"/>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[Total Taka]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="622" y="0" width="30" height="40" uuid="6de2ce47-1a69-4506-bb9b-b07ec9d900ed"/>
+				<box>
+					<pen lineWidth="0.3"/>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[Deduct Taka]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="652" y="0" width="55" height="40" uuid="1d367876-8152-4769-9d76-703520778b9f"/>
+				<box>
+					<pen lineWidth="0.3"/>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[Net Payable]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="707" y="0" width="45" height="40" uuid="7dbddbc9-bf07-4755-b720-3836bd10f8a6"/>
+				<box>
+					<pen lineWidth="0.3"/>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[Signature]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="25" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="85" y="0" width="48" height="25" uuid="0980fab1-b713-4e07-8339-e08e7a3f891a"/>
+				<box>
+					<pen lineWidth="0.3"/>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{employee_reliever_status}.equals(1)?$F{employee_reliever_type}:$F{sallery_designation}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="506" y="0" width="31" height="25" uuid="592aa564-89f2-45d3-a132-a62e5fa6d7c5"/>
+				<box>
+					<pen lineWidth="0.3"/>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="707" y="0" width="45" height="25" uuid="9683c6e9-9716-4ef3-a178-316879f24168"/>
+				<box>
+					<pen lineWidth="0.3"/>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="19" y="0" width="66" height="25" uuid="be915f3d-d6a4-424a-a97a-9501f5971cab"/>
+				<graphicElement>
+					<pen lineWidth="0.3"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="19" y="0" width="66" height="12" uuid="70dc31f5-9948-449a-8775-3ad61211b15d"/>
+				<box leftPadding="2"/>
+				<textElement>
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sallery_name}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="461" y="0" width="45" height="25" uuid="3bee4d9f-7e6f-48c1-8b8b-bff2dd2f4283"/>
+				<graphicElement>
+					<pen lineWidth="0.3"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="707" y="0" width="45" height="25" uuid="4cebfc88-5124-4480-ba2a-747fb197845c">
+					<printWhenExpression><![CDATA[$F{sallery_pending_status}.equals( 1 )]]></printWhenExpression>
+				</reportElement>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Pending]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="19" y="11" width="66" height="14" uuid="e25fc62a-8392-4f31-befb-1d016ac33f53"/>
+				<box leftPadding="2"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{employee_joining_date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="0" width="18" height="25" uuid="c91496b2-611a-4816-bcf6-e849be915da5"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$V{ShiftGroup_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="133" y="0" width="30" height="25" uuid="341ee800-63c7-46c8-a0d8-5004d7a9768a"/>
+				<box rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sallery_card_no}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="163" y="0" width="26" height="25" uuid="856dea4d-0750-4770-b7af-e7321948c44f"/>
+				<box rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sallery_working_hour}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="189" y="0" width="31" height="25" uuid="c419b9de-669d-4d0f-99eb-033ddc10ef10"/>
+				<box rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sallery_daily_wages}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="220" y="0" width="41" height="25" uuid="54e3fb28-b4b9-46b3-b787-50f7c007f316"/>
+				<box rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sallery_subtotal}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="261" y="0" width="31" height="25" uuid="2762188a-60c8-4271-a649-0cd1f5e68390"/>
+				<box rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sallery_reli_allo}.equals(0)?"":$F{sallery_reli_allo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="292" y="0" width="29" height="25" uuid="d6457580-a7b0-490f-8ba7-cf7183cc68d8"/>
+				<box rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sallery_special_allo}.equals(0)?"":$F{sallery_special_allo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="321" y="0" width="30" height="25" uuid="fed07b04-0d8e-40b4-8abc-810f72d9393a"/>
+				<box rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sallery_extra_allo}.equals(0)?"":$F{sallery_extra_allo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="351" y="0" width="38" height="25" uuid="cb890917-58bc-4c46-b216-893aa2018720"/>
+				<box rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sallery_attn_allow}.equals(0)?"":$F{sallery_attn_allow}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="389" y="0" width="37" height="25" uuid="fb16ebd4-7e5f-4c13-84a0-8c5862af0ff7"/>
+				<box rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sallery_night_allow}.equals(0)?"":$F{sallery_night_allow}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="426" y="0" width="35" height="25" uuid="97641a19-40aa-4f0a-bb0c-912f607693e9"/>
+				<box rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{double_mac_allow}.equals(0)?"":$F{double_mac_allow}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="461" y="0" width="45" height="12" uuid="ee3a3660-44f5-4c26-a52e-a5b12ed1e5d1"/>
+				<box rightPadding="3"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sallery_double_wages}.equals(0.0)?"":$F{sallery_double_wages}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="461" y="12" width="45" height="13" uuid="86fff6a5-31d1-4c5e-94bf-2116ff89578d"/>
+				<box rightPadding="3"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sallery_ot_hour}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="537" y="0" width="35" height="25" uuid="0c4b33f5-054c-4004-9ce0-d0e12c64ab91"/>
+				<box rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sallery_fes_allow}.equals(0)?"":$F{sallery_fes_allow}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="572" y="0" width="50" height="25" uuid="201c6a4b-55ac-4d38-a6f1-78244a1e0444"/>
+				<box rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sallery_total}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="622" y="0" width="30" height="25" uuid="abfe7591-25d5-4cce-8f7b-d12d4c9f4f0a"/>
+				<box rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sallery_deduct}.equals(0)?"":$F{sallery_deduct}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="652" y="0" width="55" height="25" uuid="d8bc6624-7aa9-413d-a85b-363500173e4b"/>
+				<box rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sallery_net_payable}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="24" splitType="Stretch">
+			<printWhenExpression><![CDATA[$V{COLUMN_COUNT}>=12]]></printWhenExpression>
+			<staticText>
+				<reportElement x="506" y="3" width="31" height="20" uuid="6ace8dbb-a3a9-4d5e-bd35-fdee2d3dfb61"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="707" y="3" width="45" height="20" uuid="7487b2bd-3dc4-490a-a7a8-a99ba7b1a6cc"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="3" width="133" height="20" uuid="4e838a61-d249-47fc-9620-c7fb58c41ede"/>
+				<box leftPadding="5" rightPadding="5">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Page Total]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="133" y="3" width="55" height="20" uuid="a1a93847-c269-46c2-ad55-6992883a8236"/>
+				<box rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{sallery_working_hour_4}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="652" y="3" width="55" height="20" uuid="0c424f19-c540-42e8-a072-1dbdf66e6e28"/>
+				<box rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{sallery_net_payable_5}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="188" y="3" width="74" height="20" uuid="bff9f7f7-59ca-46af-b07c-02fab69ab3c3"/>
+				<box rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{sallery_subtotal_3}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="262" y="3" width="30" height="20" uuid="a89aea46-4359-4dac-b3d9-7460e3e3071a"/>
+				<box rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{sallery_reli_allo_3}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="292" y="3" width="30" height="20" uuid="4cdb115a-9243-4c72-b418-13e93959dd1e"/>
+				<box rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{sallery_special_allo_3}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="322" y="3" width="29" height="20" uuid="b3d922b8-7955-40b1-a57a-f86bdf7b1477"/>
+				<box rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{sallery_extra_allo_3}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="351" y="3" width="38" height="20" uuid="463c748d-360b-427b-86c4-f772b7a9819a"/>
+				<box rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{sallery_attn_allow_4}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="389" y="3" width="37" height="20" uuid="670a0212-4410-484e-b823-082e8562e7c5"/>
+				<box rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{sallery_night_allow_3}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="426" y="3" width="35" height="20" uuid="d8ede0ff-6323-4351-80a9-b127392b98b3"/>
+				<box rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{double_mac_allow_1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="461" y="3" width="45" height="20" uuid="9cf2e8ee-ae85-497b-adc0-d22ba2675267"/>
+				<box rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{sallery_double_wages_3}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="537" y="3" width="36" height="20" uuid="488fef2d-f443-40d4-92d9-1e59ab9fbcdb"/>
+				<box rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{sallery_fes_allow_3}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="573" y="3" width="49" height="20" uuid="03537796-0cae-4146-b13d-47feb4ceff21"/>
+				<box rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{sallery_total_3}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="622" y="3" width="30" height="20" uuid="91705cd2-c2c5-493b-b569-0890bddc504f"/>
+				<box rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{sallery_deduct_3}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="150" splitType="Stretch">
+			<staticText>
+				<reportElement x="44" y="124" width="70" height="20" uuid="87210f08-4572-44db-83aa-4de54eacc27c"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Prepared By]]></text>
+			</staticText>
+			<line>
+				<reportElement x="44" y="124" width="57" height="1" uuid="9220209b-42e5-47c4-99b1-06177d945ca5"/>
+			</line>
+			<staticText>
+				<reportElement x="166" y="124" width="65" height="20" uuid="f4dee5b2-5656-433d-a4f2-43a4c583c7d0"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Checked By]]></text>
+			</staticText>
+			<line>
+				<reportElement x="166" y="124" width="55" height="1" uuid="9c6d0102-b17f-4124-9352-e2abc9ba30ff"/>
+			</line>
+			<staticText>
+				<reportElement x="316" y="124" width="85" height="20" uuid="5433dce9-625a-4dd6-91a7-90e95df1e3a2"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Accounts Officer]]></text>
+			</staticText>
+			<line>
+				<reportElement x="316" y="124" width="75" height="1" uuid="62a3a185-63db-4c59-aed5-b3452eb845b1"/>
+			</line>
+			<staticText>
+				<reportElement x="483" y="124" width="75" height="20" uuid="ec4d9a06-27fb-4943-b9d2-69b4ee66a538"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Manager(A&L)]]></text>
+			</staticText>
+			<line>
+				<reportElement x="483" y="124" width="66" height="1" uuid="1127389e-1a1e-48d6-8abb-9603bc3bb543"/>
+			</line>
+			<staticText>
+				<reportElement x="653" y="124" width="47" height="20" uuid="77b18f27-9c9a-4783-ac1a-a77eee0ba9f6"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[D.G.M]]></text>
+			</staticText>
+			<line>
+				<reportElement x="652" y="124" width="29" height="1" uuid="9907bf72-cacf-4eb8-9d8d-753a8c794fa3"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="4" width="84" height="42" uuid="0877ab95-4799-468a-a4db-7344a48c393d"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total ----->]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="84" y="4" width="105" height="42" uuid="e367a2c0-8d2d-403e-92ce-0f16c14c36d8"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="85" y="4" width="104" height="20" uuid="ff5b50be-4094-4039-b251-f7c60e4fb987"/>
+				<box rightPadding="3"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{sallery_working_hour_2}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="189" y="4" width="72" height="42" uuid="c2d81fe2-6105-4833-8610-89b34396fcaa"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="261" y="4" width="30" height="42" uuid="0fe056b7-47ea-480d-a816-c56f89e60135"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="291" y="4" width="30" height="42" uuid="7c373743-ef9f-4fc7-b664-f54fdebd6a24"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="321" y="4" width="30" height="42" uuid="631f10f1-1ebe-4672-925b-5fc4c57369c4"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="351" y="4" width="39" height="42" uuid="895b0d5a-f596-49b2-848f-cec2d585ed4d"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="390" y="4" width="37" height="42" uuid="a0741bf2-07a4-4b57-9d03-e61e8e55d0e9"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="427" y="4" width="33" height="42" uuid="cb08fb6d-8ed2-45f3-8ee8-b08fafcff295"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="460" y="4" width="45" height="42" uuid="5130c68d-733f-4f3e-9b99-8873c3bed383"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="505" y="4" width="31" height="42" uuid="a5cbcad1-0472-49c3-b2e5-4413a4f9a8e8"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="536" y="4" width="36" height="42" uuid="10308d3d-cb70-4b66-876b-ea15779002c8"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="572" y="4" width="50" height="42" uuid="67b5714c-c5cf-4421-a57c-cfb2eb177a85"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="622" y="4" width="30" height="42" uuid="76994e76-13d3-42dc-9dbb-f09b4be8929d"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="652" y="4" width="55" height="42" uuid="92b5c8e6-d40b-4648-9567-a0c56a3fc8ab"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="707" y="4" width="45" height="42" uuid="9172d4aa-229c-41ad-a1e8-555f9ed4c9e0"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="192" y="4" width="70" height="20" uuid="112bb532-1aa4-4c3d-971d-8f5c21b684b7"/>
+				<box rightPadding="3"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{sallery_subtotal_2}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="262" y="4" width="30" height="20" uuid="0988ed3d-4f21-4a1e-bebc-ef3d579f5486"/>
+				<box rightPadding="3"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{sallery_reli_allo_2}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="292" y="4" width="30" height="20" uuid="0c7d40e1-cfc9-47c7-b2b7-eee8fec03c35"/>
+				<box rightPadding="3"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{sallery_special_allo_2}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="322" y="4" width="30" height="20" uuid="db26fba4-7e12-4b54-8cd0-a97029449da1"/>
+				<box rightPadding="3"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{sallery_extra_allo_2}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="352" y="4" width="39" height="20" uuid="e578cbc1-1afa-4be6-bbc8-03009818e3d4"/>
+				<box rightPadding="3"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{sallery_attn_allow_3}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="391" y="4" width="37" height="20" uuid="b601a73c-c45e-466b-a72b-69e85dd1ef25"/>
+				<box rightPadding="3"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{sallery_night_allow_2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement x="461" y="6" width="45" height="20" uuid="c91efaee-def0-4086-a352-d7b303680c8a"/>
+				<box rightPadding="3"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{sallery_double_wages_2}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="461" y="26" width="45" height="20" uuid="9e22cea0-4c3e-4dcc-a562-58f23f9c6f08"/>
+				<box rightPadding="3"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{sallery_ot_hour_1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="537" y="4" width="35" height="20" uuid="76a22cb0-c2fd-40ba-8b55-8596235aa39a"/>
+				<box rightPadding="3"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{sallery_fes_allow_2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement x="572" y="4" width="50" height="20" uuid="fa4bdacc-b730-4cff-8c53-4e7d15bfa1cb"/>
+				<box rightPadding="3"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{sallery_total_2}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="622" y="4" width="30" height="20" uuid="2cf7902e-dc9d-45f6-b2ac-7f928e615096"/>
+				<box rightPadding="3"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{sallery_deduct_2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="50" width="752" height="20" uuid="2f81f4e2-8fc2-4ab7-8cf6-5d0a679ccf76"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{totalInWords}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="707" y="6" width="45" height="20" uuid="ac25e025-7fbd-41a9-b60a-f9a4866ea183"/>
+				<box rightPadding="3"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{pendingAmount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="652" y="26" width="55" height="20" uuid="47c397e2-0b29-444a-b9ca-49ae2b16e007"/>
+				<box rightPadding="3"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{payableAmount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="652" y="5" width="55" height="20" uuid="3f743696-6832-400f-8c79-4f96e92d37fc"/>
+				<box rightPadding="3">
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{sallery_net_payable_6}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
