@@ -29,6 +29,7 @@ public class MainPage extends javax.swing.JFrame {
      BuyerOrders buyerOrders;
      Products products;
      NewOrder newOrder;
+     WeavingProduction weavingProduction;
     /**
      * Creates new form Wages
      */
@@ -45,7 +46,7 @@ public class MainPage extends javax.swing.JFrame {
         buyerOrders=new BuyerOrders();
         products=new Products();
         newOrder=new NewOrder();
-        
+        weavingProduction=new WeavingProduction();
         
        // setExtendedState(JFrame.MAXIMIZED_BOTH);
         connection = DBconnect.dbconnect();
@@ -87,6 +88,10 @@ public class MainPage extends javax.swing.JFrame {
         c7.gridx = 0;
         c7.gridy = 0;
         containerPanel.add(newOrder, c7);
+        GridBagConstraints c8 = new GridBagConstraints();
+        c8.gridx = 0;
+        c8.gridy = 0;
+        containerPanel.add(weavingProduction, c8);
         
         
         machineWages.setVisible(true);
@@ -97,6 +102,7 @@ public class MainPage extends javax.swing.JFrame {
         buyerOrders.setVisible(false);
         products.setVisible(false);
         newOrder.setVisible(false);
+        weavingProduction.setVisible(false);
         
     }
 
@@ -121,6 +127,7 @@ public class MainPage extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
         containerPanel = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -227,6 +234,13 @@ public class MainPage extends javax.swing.JFrame {
             }
         });
 
+        jButton9.setText("Weaving Production");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -242,7 +256,8 @@ public class MainPage extends javax.swing.JFrame {
                     .addComponent(btnNewOrder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -256,17 +271,19 @@ public class MainPage extends javax.swing.JFrame {
                 .addComponent(jButton5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton7)
-                .addGap(114, 114, 114)
+                .addGap(52, 52, 52)
                 .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnNewOrder)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton8)
-                .addGap(38, 38, 38)
+                .addGap(51, 51, 51)
                 .addComponent(jButton2)
-                .addContainerGap(179, Short.MAX_VALUE))
+                .addContainerGap(199, Short.MAX_VALUE))
         );
 
         containerPanel.setMinimumSize(new java.awt.Dimension(1000, 600));
@@ -462,6 +479,7 @@ public class MainPage extends javax.swing.JFrame {
         buyerOrders.setVisible(false);
         products.setVisible(false);
         newOrder.setVisible(false);
+        weavingProduction.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -475,6 +493,7 @@ public class MainPage extends javax.swing.JFrame {
         buyerOrders.setVisible(false);
         products.setVisible(false);
         newOrder.setVisible(false);
+        weavingProduction.setVisible(false);
         
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -488,6 +507,7 @@ public class MainPage extends javax.swing.JFrame {
         buyerOrders.setVisible(false);
         products.setVisible(false);
         newOrder.setVisible(false);
+        weavingProduction.setVisible(false);
         
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -501,6 +521,7 @@ public class MainPage extends javax.swing.JFrame {
         buyerOrders.setVisible(false);
         products.setVisible(false);
         newOrder.setVisible(false);
+        weavingProduction.setVisible(false);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -513,6 +534,7 @@ public class MainPage extends javax.swing.JFrame {
         buyerOrders.setVisible(false);
         products.setVisible(false);
         newOrder.setVisible(false);
+        weavingProduction.setVisible(false);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void btnNewOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewOrderActionPerformed
@@ -525,6 +547,7 @@ public class MainPage extends javax.swing.JFrame {
         buyerOrders.setVisible(true);
         products.setVisible(false);
         newOrder.setVisible(false);
+        weavingProduction.setVisible(false);
     }//GEN-LAST:event_btnNewOrderActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -537,6 +560,7 @@ public class MainPage extends javax.swing.JFrame {
         buyerOrders.setVisible(false);
         products.setVisible(true);
         newOrder.setVisible(false);
+        weavingProduction.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -549,6 +573,7 @@ public class MainPage extends javax.swing.JFrame {
         buyerOrders.setVisible(false);
         products.setVisible(false);
         newOrder.setVisible(true);
+        weavingProduction.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
@@ -565,6 +590,19 @@ public class MainPage extends javax.swing.JFrame {
         // TODO add your handling code here:
         new Department().setVisible(true);
     }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        machineWages.setVisible(false);
+        wagesByEmployee.setVisible(false);
+        pendingWagesTokenEntryPanel.setVisible(false);
+        paymentPendingWagesPanel.setVisible(false);
+        reports.setVisible(false);
+        buyerOrders.setVisible(false);
+        products.setVisible(false);
+        newOrder.setVisible(false);
+        weavingProduction.setVisible(true);
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -613,6 +651,7 @@ public class MainPage extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
